@@ -9,47 +9,24 @@ private:
     int seconds = NULL;
     const int ERA = 23;
     const int TIME_M_S = 59;
+    const int ZERO = 0;
 
-    bool check_time(int check_hours = 0, int check_minutes = 0, int check_seconds = 0){
-        if(check_hours != 0){
-            if()
-        }
-    }
-
-    bool check_hours(int checked_hours) {
-        if (checked_hours >= 0 && checked_hours <= 23) {
+    bool check_time(int hours, int minutes, int seconds) {
+                if (hours >= ZERO && hours <= ERA && minutes >= ZERO && minutes <= TIME_M_S && seconds >= ZERO && seconds <= TIME_M_S) {
             return true;
         } else {
-            cout << "Error: Invalid hours value" << endl;
-            return false;
-        }
-    }
-
-    bool check_minutes(int checked_minutes) {
-        if (checked_minutes >= 0 && checked_minutes <= 59) {
-            return true;
-        } else {
-            cout << "Error: Invalid minutes value" << endl;
-            return false;
-        }
-    }
-
-    bool check_seconds(int checked_seconds) {
-        if (checked_seconds >= 0 && checked_seconds <= 59) {
-            return true;
-        } else {
-            cout << "Error: Invalid seconds value" << endl;
+            cout << "Error: Invalid time values" << endl;
             return false;
         }
     }
 
 public:
     Time(int h, int m, int s) {
-        hours = h ? check_hours(h) : 0;
-
-        minutes = m ? check_minutes(m) : 0;
-
-        seconds = s ? check_seconds(s) : 0;
+        if (check_time(h, m, s)) {
+            hours = h;
+            minutes = m;
+            seconds = s;
+        }
     }
 
     int getHours() {
@@ -64,21 +41,12 @@ public:
         return seconds;
     }
 
-    void setHours(int h) {
-        if (check_hours(h)) {
+    void setTime(int h, int m, int s) {
+        if (check_time(h, m, s)) {
             hours = h;
-        }
-    }
-
-    void setMinutes(int m) {
-        if (check_minutes(m)) {
             minutes = m;
-        }
-    }
-
-    void setSeconds(int s) {
-        if (check_seconds(s))
             seconds = s;
+        }
     }
 
     void displayTime() {
