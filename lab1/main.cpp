@@ -22,21 +22,13 @@ struct Student {
 
 Student arr[MAXLEN];
 int student_index = 0;
-
 int menu();
-
 void readFromFile(const char *fileName);
-
 void saveToFile(const char *fileName);
-
 void addNew();
-
 void del();
-
 void sort_data();
-
 void print_students();
-
 void modify();
 
 int main() {
@@ -69,17 +61,9 @@ int main() {
 }
 
 int menu() {
-    cout << "\n";
-    cout << "Choose\n";
-    cout << "1-For look up from a file\n";
-    cout << "2-To write to a file\n";
-    cout << "3-To add a record\n";
-    cout << "4-To delete the record\n";
-    cout << "5-To sort by surname\n";
-    cout << "6-To change record\n";
-    cout << "7-To exit\n";
-    cout << "\n";
-    cout << "Your choice: ";
+    cout << "\n" << "Choose\n" << "1-For look up from a file\n" << "2-To write to a file\n" << "3-To add a record\n"
+         << "4-To delete the record\n" << "5-To sort by surname\n" << "6-To change record\n" << "7-To exit\n" << "\n"
+         << "Your choice: ";
 
     char ans_char[MAXLEN];
     int ans;
@@ -102,7 +86,8 @@ void readFromFile(const char *fileName) {
 
     if (!f) {
         cout << "The file does not exist";
-    } else {
+    }
+    else {
         Student stud;
         student_index = 0;
         while (true) {
@@ -145,7 +130,7 @@ void del() {
 
     if (student_number < 0 || student_number > student_index) {
         cout << "Wrong index!";
-        return;
+        return NULL;
     }
 
     for (int i = student_number - 1; i < student_index; i++) {
@@ -176,6 +161,11 @@ void print_students() {
     cout << "\n";
 }
 
+void get_input(const char* message, char* destination, int maxLength) {
+    cout << message;
+    cin.getline(destination, maxLength);
+}
+
 void modify() {
     char student_number_str[MAXLEN];
     int student_number;
@@ -186,16 +176,11 @@ void modify() {
 
     student_number--;
 
-    cout << "Enter your surname: ";
-    cin.getline(arr[student_number].surname, MAXLEN);
-    cout << "Enter the group number: ";
-    cin.getline(arr[student_number].group_number, MAXLEN);
-    cout << "Enter the address: ";
-    cin.getline(arr[student_number].address, MAXLEN);
-    cout << "Enter a phone number: ";
-    cin.getline(arr[student_number].phone_number, MAX_NUM);
+    getInput("Enter your surname: ", arr[student_number].surname, MAXLEN);
+    getInput("Enter the group number: ", arr[student_number].group_number, MAXLEN);
+    getInput("Enter the address: ", arr[student_number].address, MAXLEN);
+    getInput("Enter a phone number: ", arr[student_number].phone_number, MAX_NUM);
 
     cout << "\n";
     print_students();
 }
-
